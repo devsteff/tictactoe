@@ -3,7 +3,16 @@
 */
 import React from 'react'
 
-class Board extends React.Component {
+function Square(props) {
+	//console.log("render Square "+props.id+" -->"+props.highlight);
+	return (
+	  <button className={props.highlight ? 'square red' : 'square'} onClick={props.onClick}>
+		{props.value}
+	  </button>
+	)
+}
+  
+export class Board extends React.Component {
 	renderSquare(i) {
 		const highlight = this.props.winResult == null ? false : this.props.winResult.buttons.includes(i)
 		return <Square key={'_sq' + i}
@@ -41,3 +50,4 @@ class Board extends React.Component {
 		)
 	}
 }
+export default Board
