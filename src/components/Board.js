@@ -1,5 +1,5 @@
 /*
-* Extract as a seperate class flile.
+* Board component as a seperate class flile.
 */
 import React from 'react'
 

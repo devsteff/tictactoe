@@ -1,3 +1,9 @@
+/*
+* Game component as a seperate class flile.
+*/
+import React from 'react'
+import Board from './Board.js'
+
 export class Game extends React.Component {
     constructor(props) {
       super(props)
@@ -16,7 +22,7 @@ export class Game extends React.Component {
       const history = this.state.history.slice(0, this.state.stepNumber + 1)
       const current = history[history.length - 1]
       const squares = current.squares.slice()
-      const winresult = calculateWinner(squares)
+      const winresult = this.calculateWinner(squares)
       if (winresult || squares[i]) {
         this.setState({
           winResult: winresult,
@@ -29,7 +35,7 @@ export class Game extends React.Component {
           squares: squares,
           whatClicked: i + 1,
         }]),
-        winResult: calculateWinner(squares),
+        winResult: this.calculateWinner(squares),
         stepNumber: history.length,
         xIsNext: !this.state.xIsNext,
       })
@@ -40,17 +46,44 @@ export class Game extends React.Component {
       this.setState({
         stepNumber: step,
         xIsNext: (step % 2) === 0,
-        winResult: calculateWinner(history[step].squares)
+        winResult: this.calculateWinner(history[step].squares)
       })
     }
-  
+
+    getCoordinates(field) {
+        let x = field % 3
+        let y = Math.floor((field - 1) / 3) % 3
+        return ' (' + (y + 1) + ', ' + (x === 0 ? 3 : x) + ')'
+    }
+
+    calculateWinner(squares) {
+        const lines = [
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8],
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8],
+          [0, 4, 8],
+          [2, 4, 6],
+        ]
+        for (let i = 0; i < lines.length; i++) {
+          const [a, b, c] = lines[i]
+          if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+            const result = { winner: squares[a], buttons: lines[i] }
+            return result
+          }
+        }
+        return null
+    }
+    
     render() {
       //console.log("render Game");
       const history = this.state.history
       const current = history[this.state.stepNumber]
       const moves = history.map((step, move) => {
         const desc = move ?
-          'Zurück zu Zug #' + move + getCoordinates(this.state.history[move].whatClicked) :
+          'Zurück zu Zug #' + move + this.getCoordinates(this.state.history[move].whatClicked) :
           'Neustart'
         const descStyle = move ? (move === this.state.stepNumber ? 'history highlight' : 'history') : 'startbutton'
         return (
@@ -86,31 +119,5 @@ export class Game extends React.Component {
       )
     }
   }
-  
-  function getCoordinates(field) {
-    let x = field % 3
-    let y = Math.floor((field - 1) / 3) % 3
-    return ' (' + (y + 1) + ', ' + (x === 0 ? 3 : x) + ')'
-  }
-  
-  function calculateWinner(squares) {
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ]
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i]
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        const result = { winner: squares[a], buttons: lines[i] }
-        return result
-      }
-    }
-    return null
-  }
+
 export default Game
