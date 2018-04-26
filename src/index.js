@@ -1,5 +1,6 @@
 /*
-* All in one TicTacToe application#.
+* All in one TicTacToe application.
+* ---------------------------------
 */
 import React from 'react'
 import ReactDOM from 'react-dom'
