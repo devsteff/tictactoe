@@ -1,3 +1,6 @@
+/*
+* Extract as a seperate class flile.
+*/
 import React from 'react'
 
 class Board extends React.Component {
