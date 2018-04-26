@@ -23,7 +23,7 @@ export default {
         ],
         "linebreak-style": [
             "warn",
-            "linux"
+            "unix"
         ],
         "quotes": [
             "warn",
