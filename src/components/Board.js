@@ -6,12 +6,12 @@ import React from 'react'
 function Square(props) {
 	//console.log("render Square "+props.id+" -->"+props.highlight);
 	return (
-	  <button className={props.highlight ? 'square red' : 'square'} onClick={props.onClick}>
-		{props.value}
-	  </button>
+		<button className={props.highlight ? 'square red' : 'square'} onClick={props.onClick}>
+			{props.value}
+		</button>
 	)
 }
-  
+
 export class Board extends React.Component {
 	renderSquare(i) {
 		const highlight = this.props.winResult == null ? false : this.props.winResult.buttons.includes(i)
