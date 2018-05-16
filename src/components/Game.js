@@ -2,7 +2,9 @@
 * Game component as a seperate class flile.
 */
 import React from 'react'
-import Board from './Board.js'
+
+import Board from './ui/Board.js'
+import "./Game.css";
 
 export class Game extends React.Component {
   constructor(props) {

@@ -3,14 +3,8 @@
 */
 import React from 'react'
 
-function Square(props) {
-	//console.log("render Square "+props.id+" -->"+props.highlight);
-	return (
-		<button className={props.highlight ? 'square red' : 'square'} onClick={props.onClick}>
-			{props.value}
-		</button>
-	)
-}
+import Square from './Square.js'
+import "./Board.css"
 
 export class Board extends React.Component {
 	renderSquare(i) {

@@ -1,0 +1,29 @@
+.status {
+  padding-left: 10px;
+  margin-bottom: 10px;
+  font-weight: bolder;
+}
+
+.history {
+  width: 150px;
+}
+
+.highlight {
+    font-weight: bolder;
+    background-color: yellowgreen;
+}
+
+.startbutton {
+  width: 150px;
+  font-weight: bolder;
+  background-color: red;
+}
+  
+.game {
+    display: flex;
+    flex-direction: row;
+}
+  
+.game-info {
+    margin-left: 20px;
+}
